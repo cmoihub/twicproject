@@ -34,6 +34,3 @@ while True:
     break
 
 f.CmosLed(False)
-
-    
-    
