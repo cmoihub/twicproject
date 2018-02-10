@@ -10,7 +10,6 @@
     <firebase-auth id="auth" user="{{user}}" status-known="{{statusKnown}}" provider="google">
     <paper-button raised on-tap="login" hidden$="[[user]]">Sign in</paper-button>
     <paper-button raised on-tap="logout" hidden$="[[!user]]">Sign out</paper-button>
-
     <template is="dom-if" if="[[user]]">
       <twic-log></twic-log>
       <twic-users></twic-users>
@@ -20,23 +19,21 @@
     class MyLogin extends Polymer.Element {
       static get is() { return 'my-login'; }
       static get properties() {
-       return {
-        user: {
-          type: Object
-        },
-        statusKnown: {
-          type: Object
-        }
-       }; 
+        return {
+          user: {
+            type: Object
+          },
+          statusKnown: {
+            type: Object
+          }
+        }; 
       }
-      //  use for email
+      //  use for email?
       //  https://howtofirebase.com/firebase-authentication-for-web-d58aad62cf6d
       login(){
-        // return this.$.auth.signInWithPopUp()
         return this.$.auth.signInWithPopup();
       }
-      logout(e){
-        console.log(e);
+      logout(){
         return this.$.auth.signOut(); 
       }
     }

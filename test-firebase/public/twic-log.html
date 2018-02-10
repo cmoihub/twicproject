@@ -27,11 +27,11 @@
 
     <h1>User Log</h1>
      <iron-ajax
-         auto
-         url="user.json"
-         handle-as="json"
-         on-response="handleResponse"
-         ></iron-ajax>
+        auto
+        url="user.json"
+        handle-as="json"
+        on-response="handleResponse">
+      </iron-ajax>
     <iron-list items="[[userItems]]" as="item">
       <template>
         <div>
@@ -62,9 +62,6 @@
 
   </template> 
   <script>
-    // Polymer({
-    //   is: 'twic-log'
-    // });
     class TwicLog extends Polymer.Element {
       static get is() { return 'twic-log'; }
 
