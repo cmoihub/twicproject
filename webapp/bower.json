@@ -1,0 +1,18 @@
+{
+  "name": "webapp",
+  "homepage": "https://github.com/twic-project/twicproject",
+  "authors": [
+    "Craig Isesele <cmoisesele@live.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/bower_components",
+    "test",
+    "tests"
+  ]
+}
