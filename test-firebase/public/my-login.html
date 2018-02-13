@@ -7,11 +7,6 @@
       <h1>Welcome [[user.displayName]]</h1>
     </template>
 
-    <!-- <firebase-auth id="auth" user="{{user}}" status-known="{{statusKnown}}" provider="google">
-    <paper-button raised on-tap="login" hidden$="[[user]]">Sign in</paper-button>
-    <paper-button raised on-tap="logout" hidden$="[[!user]]">Sign out</paper-button> -->
-
-
     <firebase-auth id="auth" user="{{user}}" status-known="{{statusKnown}}" provider="google">
         <paper-button raised on-tap="login" hidden$="[[user]]">Sign in</paper-button>
         <paper-button raised on-tap="logout" hidden$="[[!user]]">Sign out</paper-button>

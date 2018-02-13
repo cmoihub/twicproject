@@ -1,15 +1,23 @@
 {
   "entrypoint": "public/index.html",
   "shell": "public/my-app.html",
-  "fragments": [],
+  "fragments": [
+    "public/my-login.html",
+    "public/twic-log.html",
+    "public/twic-users.html"
+  ],
   "sources": [
     "src/**/*",
     "public/index.html",
-    "public/my-app.html"
+    "public/my-app.html",
+    "public/my-login.html",
+    "public/twic-log.html",
+    "public/twic-users.html"
   ],
   "extraDependencies": [
     "bower_components/webcomponentsjs/*.js",
     "public/bower_components/webcomponentsjs/*.js",
+    "public/bower_components/polymerfire/*.html",
     "manifest.json"
   ],
   "builds": [
