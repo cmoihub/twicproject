@@ -1,4 +1,21 @@
 {
     "entrypoint": "public/index.html",
-    "shell": "public/my-app.html"
+    "shell": "public/my-app.html",
+    "fragments": [
+        "public/my-login.html",
+        "public/twic-log.html",
+        "public/twic-users.html"
+
+    ],
+    "extraDependencies": [
+        "public/bower_components/webcomponentsjs/*.js",
+        "manifest.json"
+    ],
+    "builds": [{
+        "bundle": true,
+        "js": {"minify": true},
+        "css": {"minify": true},
+        "html": {"minify": true}
+      }]
+
 }

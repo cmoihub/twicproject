@@ -1,0 +1,29 @@
+{
+  "entrypoint": "public/index.html",
+  "shell": "public/my-app.html",
+  "fragments": [],
+  "sources": [
+    "src/**/*",
+    "public/index.html",
+    "public/my-app.html"
+  ],
+  "extraDependencies": [
+    "bower_components/webcomponentsjs/*.js",
+    "public/bower_components/webcomponentsjs/*.js",
+    "manifest.json"
+  ],
+  "builds": [
+    {
+      "bundle": true,
+      "js": {
+        "minify": true
+      },
+      "css": {
+        "minify": true
+      },
+      "html": {
+        "minify": true
+      }
+    }
+  ]
+}

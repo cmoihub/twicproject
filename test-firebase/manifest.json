@@ -1,0 +1,7 @@
+{
+    "name":"TWIC Access Control System",
+    "short_name":"TWIC",
+    "description":"TWIC description",
+    "start_url":"public/index.html",
+    "display":"standalone"
+}
