@@ -1,16 +1,16 @@
-<link rel="import" href="/bower_components/polymer/polymer.html">
-<link rel="import" href="/bower_components/polymer/lib/elements/dom-repeat.html">
+<link rel="import" href="bower_components/polymer/polymer.html">
+<link rel="import" href="bower_components/polymer/lib/elements/dom-repeat.html">
 
-<link rel="import" href="/bower_components/polymerfire/firebase-auth.html">
-<link rel="import" href="/bower_components/polymerfire/firebase-query.html">
+<link rel="import" href="bower_components/polymerfire/firebase-auth.html">
+<link rel="import" href="bower_components/polymerfire/firebase-query.html">
 
-<link rel="import" href="/bower_components/paper-button/paper-button.html">
-<link rel="import" href="/bower_components/paper-icon-button/paper-icon-button.html">
-<link rel="import" href="/bower_components/paper-input/paper-input.html">
+<link rel="import" href="bower_components/paper-button/paper-button.html">
+<link rel="import" href="bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="bower_components/paper-input/paper-input.html">
 
 
-<link rel="import" href="/bower_components/iron-flex-layout/iron-flex-layout.html">
-<link rel="import" href="/bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="bower_components/iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="bower_components/iron-icons/iron-icons.html">
 
 
 <dom-module id="twic-users">
@@ -44,25 +44,25 @@
     <firebase-auth user="{{user}}"></firebase-auth>
     <firebase-query 
       id="query"
-      path="/users/[[user.uid]]/twic-users"
-      data="{{twic-users}}"
+      path="/users/[[user.uid]]/users"
+      data="{{users}}"
     >
     <div id="card">
-      <div id="twic-users">
-        <ul id="twic-users-list">
-          <template is="dom-repeat" items="[[twic-users]]" as="twic-user">
+      <div id="users">
+        <ul id="user-list">
+          <template is="dom-repeat" items="[[users]]" as="user">
             <li>
               <p class="content">
-                [[twic-user.content]]
+                [[user.content]]
               </p>
-              <paper-icon-button icon="clear" user="[[twic-user]]" on-tap="remove"></paper-icon-button>
+              <paper-icon-button icon="clear" user="[[user]]" on-tap="remove"></paper-icon-button>
             </li>
           </template>
         </ul>
 
-        <paper-input id="input" label="Take a note..." on-keypress="enterKeyPressed"></paper-input>
-        <div id="twic-users-controls">
-          <paper-button id="add" on-tap="add">Add New User</paper-button>
+        <paper-input id="input" always-float-label error-message="Bad user name" label="Add a new user..." on-keypress="enterKeyPressed"></paper-input>
+        <div id="users-controls">
+          <paper-button id="add" on-tap="add">Add</paper-button>
         </div>
       </div>
     </div>
@@ -85,7 +85,7 @@
         this.$.query.ref.push({
           content: this.$.input.value
         })
-        // clear texxt field
+        // clear text field
         this.$.input.value = null;
       }
       

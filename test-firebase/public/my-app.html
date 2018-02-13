@@ -4,13 +4,19 @@
 <link rel="import" href="twic-log.html">
 <link rel="import" href="twic-users.html">
 
+<!--
+        auth-domain="twic-polymer.firebaseapp.com"
+      database-url="https://twic-polymer.firebaseio.com/"
+      api-key="AIzaSyDQlSOcyXeLzrylLwzen55N3l5MYLHTi9k"
+  -->
 <dom-module id="my-app">
   <template>
     <firebase-app
       id="firebase"
-      auth-domain="twic-polymer.firebaseapp.com"
-      database-url="https://twic-polymer.firebaseio.com/"
-      api-key="AIzaSyDQlSOcyXeLzrylLwzen55N3l5MYLHTi9k">
+      auth-domain="twic-db.firebaseapp.com"
+      database-url="https://twic-db.firebaseio.com/"
+      api-key="AIzaSyAyOqg5oprERTAN8Z_aVe88mdfx9sb9l_A"
+      >
     </firebase-app>
     <my-login></my-login>
   </template>
