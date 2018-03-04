@@ -12,7 +12,6 @@
 <link rel="import" href="bower_components/iron-flex-layout/iron-flex-layout.html">
 <link rel="import" href="bower_components/iron-icons/iron-icons.html">
 
-
 <dom-module id="twic-users">
   <template>
 
@@ -64,6 +63,16 @@
         <div id="users-controls">
           <paper-button id="add" on-tap="add">Add</paper-button>
         </div>
+        <!-- <template is="dom-bind"> -->
+        <!-- <form> -->
+          <twic-new-user></twic-new-user>
+          <!-- <twic-new-user new_user="{{_data}}"></twic-new-user>
+          <input type="submit" name="twic-new-user" class="btn">
+          <input name="new_user" value="[[_data]]" hidden> -->
+        <!-- </form> -->
+        <!-- <paper-button id="test" on-tap="test" raised>Test Form</paper-button> -->
+        <!-- </template> -->
+
       </div>
     </div>
     </firebase-query>
@@ -80,11 +89,22 @@
         }
       }
 
+      test(){
+        value = this.$.new_user.value;
+        if(value!=null){
+          console.log('failure');  
+        } else {
+          console.log('success');
+        }
+        
+      }
+
       add(){
         // add item in input text box to database
         this.$.query.ref.push({
           content: this.$.input.value
         })
+
         // clear text field
         this.$.input.value = null;
       }

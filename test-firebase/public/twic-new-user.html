@@ -1,0 +1,43 @@
+<link rel="import" href="bower_components/polymer/polymer.html">
+<link rel="import" href="bower_components/paper-button/paper-button.html">
+<dom-module id="twic-new-user">
+  <template>
+    <paper-input id="card_id" always-float-label error-message="Invalid card id" label="Card ID"></paper-input>
+    <paper-input id="fingerprint" always-float-label error-message="Invalid fingerprint id" label="Fingerprint"></paper-input>
+    <paper-input id="role" always-float-label error-message="Invalid role" label="Role"></paper-input>
+    <paper-input id="level" always-float-label error-message="Invalid level" label="Authority level"></paper-input>
+
+    <paper-button id="test" on-tap="test" raised>Test Form</paper-button>
+  </template>
+  <script>
+    class TwicNewUser extends Polymer.Element {
+      static get is() { return 'twic-new-user'; }
+      static get properties(){
+        return {
+          new_user: {
+            type: Object
+          }
+        }
+      }
+
+      // static get listeners() {
+      //   return {
+      //     'input' : '_onInput'
+      // }
+
+      test(e){
+        console.log(e);
+        // this.new_user = {
+        //   id: this.$.card_id.value.trim(),
+        //   card_data: {
+        //       fingerprint: this.$.fingerprint.value.trim(),
+        //       level: this.$.level.value.trim(),
+        //       role: this.$.role.value.trim()
+        //   }
+        // console.log(this.new_user);
+      }
+    }
+
+    customElements.define(TwicNewUser.is, TwicNewUser);
+  </script>
+</dom-module>

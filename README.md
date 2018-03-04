@@ -1,5 +1,7 @@
 # twicproject
 
+Please note for the webapp to add polymer elements you must put an html link in the my-app.html file 
+
 I and Liam were able to get the card and the fingerprint reader to work together
 
 This is done using four python scripts - twic, db_checker, verify, rfidcard
