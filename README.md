@@ -29,3 +29,15 @@ If they don’t we print some message about the card id not matching to the fing
 We use a counter variable to keep track of if the card ever shows up in our database
 
 If the card is found the counter variable is altered and at the end of the iteration we check if the variable was altered or not, if it wasn’t then we print some message to the console to let us know so
+
+For the current iteration of the web app
+It can be run by typing in 'firebase serve' in the terminal once in the test-firebase folder
+Most likely you may have to do this on a UNIX-based device, on Windows you may have to use a terminal emulator such as
+- git bash
+- powershell
+- command prompt
+- cygwin
+- PUTTY
+
+Note that the above option would have one running the app using localhost
+If you want to be able to access the app on a device other than yours you can use the 'firebase deploy' command instead, 
