@@ -59,3 +59,17 @@ def send_card_info_to_database(card_id):
     sent = json.dumps(data)
     result = requests.post(firebase_url+'/cards.json', sent)
     print 'Success!' + str(result.status_code) + ',' + result.text
+
+
+def get_data():
+    '''
+    Return data as a list of values
+    Firebase automatically generates random ids (keys) that match up to values
+    that we upload to the database, we do not need need to know what these keys are
+    so we can just work with the values
+    '''
+    # Get data from firebase
+    result = requests.get(FIREBASE_URL + '/test_data.json')
+    # Convert data to json
+    data = json.loads(result.text)
+    return data.values()

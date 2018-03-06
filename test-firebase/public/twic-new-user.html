@@ -1,0 +1,69 @@
+<link rel="import" href="bower_components/polymer/polymer.html">
+<link rel="import" href="bower_components/paper-button/paper-button.html">
+
+<link rel="import" href="bower_components/polymerfire/firebase-auth.html">
+<link rel="import" href="bower_components/polymerfire/firebase-query.html">
+
+<dom-module id="twic-new-user">
+  <template>
+    <firebase-auth user="{{user}}"></firebase-auth>
+    <firebase-query 
+      id="query"
+      path="/users/[[user.uid]]/users"
+      data="{{users}}"
+    >
+
+    <paper-input id="card_id" always-float-label error-message="Invalid card id" label="Card ID"></paper-input>
+    <paper-input id="fingerprint" always-float-label error-message="Invalid fingerprint id" label="Fingerprint"></paper-input>
+    <paper-input id="role" always-float-label error-message="Invalid role" label="Role"></paper-input>
+    <paper-input id="level" always-float-label error-message="Invalid level" label="Authority level"></paper-input>
+    <paper-button id="test" on-tap="test" raised>Add User</paper-button>
+  </firebase-query>
+    
+  </template>
+  <script>
+    class TwicNewUser extends Polymer.Element {
+      static get is() { return 'twic-new-user'; }
+      static get properties(){
+        return {
+          new_user: {
+            type: Object
+          }
+        }
+      }
+
+      // static get listeners() {
+      //   return {
+      //     'input' : '_onInput'
+      // }
+      test(e){
+        
+        this.new_user = {
+            card_id:this.$.card_id.value,
+            card_data: {
+              fingerprint: this.$.fingerprint.value,
+              level: this.$.level.value,
+              role: this.$.role.value
+            }
+          }
+          console.log(this.new_user);
+          this.$.query.ref.push(this.new_user);
+
+          // clear fields
+          this.$.card_id.value = null;
+          this.$.fingerprint.value = null;
+          this.$.level.value = null;
+          this.$.role.value = null;
+      }
+
+      enterKeyPressed(e){
+        if(e.which === 13 || e.keyCode === 13){
+          console.log(e)
+          this.add()
+        }
+      }
+    }
+
+    customElements.define(TwicNewUser.is, TwicNewUser);
+  </script>
+</dom-module>
