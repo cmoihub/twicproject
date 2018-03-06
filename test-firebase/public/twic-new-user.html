@@ -12,12 +12,11 @@
       path="/users/[[user.uid]]/users"
       data="{{users}}"
     >
-
     <paper-input id="card_id" always-float-label error-message="Invalid card id" label="Card ID"></paper-input>
     <paper-input id="fingerprint" always-float-label error-message="Invalid fingerprint id" label="Fingerprint"></paper-input>
     <paper-input id="role" always-float-label error-message="Invalid role" label="Role"></paper-input>
     <paper-input id="level" always-float-label error-message="Invalid level" label="Authority level"></paper-input>
-    <paper-button id="test" on-tap="test" raised>Add User</paper-button>
+    <paper-button id="add" on-tap="add" raised>Add User</paper-button>
   </firebase-query>
     
   </template>
@@ -36,7 +35,7 @@
       //   return {
       //     'input' : '_onInput'
       // }
-      test(e){
+      add(e){
         
         this.new_user = {
             card_id:this.$.card_id.value,
