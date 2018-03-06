@@ -26,10 +26,10 @@
       padding: 0;
       margin: 0;
     }*/
-    /*#user-info{  }
+    #user-info{  }
     #user-info ul li {display: inline}
-    #user-info ul li:after{content: ", ";}
-    #user-info ul li.last:after{content: ". ";}*/
+    #user-info ul li:after{content: ",";}
+    #user-info ul li.last:after{content: ".";}
     </style>
 
     <firebase-auth user="{{user}}"></firebase-auth>
@@ -45,23 +45,23 @@
           <template is="dom-repeat" items="[[users]]" as="user">
             <li>
               <p class="new_user">
-                Card Id: [[user.card_id]], Biometric: [[user.card_data.fingerprint]], Authority Level: [[user.card_data.level]], Institutional Role: [[user.card_data.role]]
-                <!-- <div id="user-info">
+                <!-- Card Id: [[user.card_id]], Biometric: [[user.card_data.fingerprint]], Authority Level: [[user.card_data.level]], Institutional Role: [[user.card_data.role]] -->
+                <div id="user-info">
                   <ul>
-                  <li>
-                    Card Id: [[user.card_id]]
-                  </li>
-                  <li>
-                    Biometric: [[user.card_data.fingerprint]]
-                  </li>
-                  <li>
-                    Authority Level: [[user.card_data.level]]
-                  </li>
-                  <li class="last">
-                    Institutional Role: [[user.card_data.role]]
-                  </li>
-                </ul>  
-                </div> -->
+                    <li>
+                      Card Id: [[user.card_id]]
+                    </li>
+                    <li>
+                      Biometric: [[user.card_data.fingerprint]]
+                    </li>
+                    <li>
+                      Authority Level: [[user.card_data.level]]
+                    </li>
+                    <li class="last">
+                      Institutional Role: [[user.card_data.role]]
+                    </li>
+                  </ul>  
+                </div>
               </p>
               <paper-icon-button icon="clear" user="[[user]]" on-tap="remove"></paper-icon-button>
             </li>
