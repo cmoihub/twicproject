@@ -49,30 +49,31 @@
     <div id="card">
       <div id="users">
         <ul id="user-list">
+          <p>Users</p>
           <template is="dom-repeat" items="[[users]]" as="user">
             <li>
-              <p class="content">
-                [[user.content]]
+              <p class="new_user">
+                <ul id="user=info">
+                <li>
+                  Card Id: [[user.card_id]]
+                </li>
+                <li>
+                  Biometric: [[user.card_data.fingerprint]]
+                </li>
+                <li>
+                  Authority Level: [[user.card_data.level]]
+                </li>
+                <li>
+                  Institutional Role: [[user.card_data.role]]
+                </li>
+              </ul>
               </p>
               <paper-icon-button icon="clear" user="[[user]]" on-tap="remove"></paper-icon-button>
             </li>
           </template>
         </ul>
-
-        <paper-input id="input" always-float-label error-message="Bad user name" label="Add a new user..." on-keypress="enterKeyPressed"></paper-input>
-        <div id="users-controls">
-          <paper-button id="add" on-tap="add">Add</paper-button>
         </div>
-        <!-- <template is="dom-bind"> -->
-        <!-- <form> -->
-          <twic-new-user></twic-new-user>
-          <!-- <twic-new-user new_user="{{_data}}"></twic-new-user>
-          <input type="submit" name="twic-new-user" class="btn">
-          <input name="new_user" value="[[_data]]" hidden> -->
-        <!-- </form> -->
-        <!-- <paper-button id="test" on-tap="test" raised>Test Form</paper-button> -->
-        <!-- </template> -->
-
+        <twic-new-user></twic-new-user>
       </div>
     </div>
     </firebase-query>
@@ -89,39 +90,16 @@
         }
       }
 
-      test(){
-        value = this.$.new_user.value;
-        if(value!=null){
-          console.log('failure');  
-        } else {
-          console.log('success');
-        }
-        
-      }
-
-      add(){
-        // add item in input text box to database
-        this.$.query.ref.push({
-          content: this.$.input.value
-        })
-
-        // clear text field
-        this.$.input.value = null;
-      }
-      
-      enterKeyPressed(e){
-        if(e.which === 13 || e.keyCode === 13){
-          console.log(e)
-          this.add()
-        }
-      }
-
       /**
        * Go to database find item that matches the key and delete it
        */
       remove(e){
         let key = e.currentTarget.user.$key;
         this.$.query.ref.child(key).remove()
+      }
+
+      modify(e){
+        console.log('changed')
       }
     }
     customElements.define(TwicUser.is, TwicUser);
