@@ -8,15 +8,18 @@ import json
 import requests
 import time
 import RPi.GPIO as GPIO
-GPIO.setmode(GPIO.BCM)
-GPIO.setwarnings(False)
-GPIO.setup(23, GPIO.OUT)
-GPIO.setup(24, GPIO.OUT)
 
 CARD1 = '18004865AB9E'
 CARD2 = '19007E5E4970'
 FIREBASE_URL = 'https://twic-db.firebaseio.com'
 
+def setup_leds():
+    GPIO.setmode(GPIO.BCM)
+    GPIO.setwarnings(False)
+    GPIO.setup(23, GPIO.OUT)
+    GPIO.setup(24, GPIO.OUT)
+
+setup_leds()
 def check_db(data, card_id, fingerprint):
     ''' This function checks the database for a valid card if and then looks up the corresponding fingerprint
      https://stackoverflow.com/questions/11700798/python-accessing-values-nested-within-dictionaries
@@ -24,13 +27,16 @@ def check_db(data, card_id, fingerprint):
     #data = get_data()
     # occurrence_of_card_id tracks if card id exists in the database
     # validateInput(data, card_id, fingerprint)
+    cardIDFound = False
     occurrence_of_card_id = len(data)
     for item in data:
         occurrence_of_card_id = occurrence_of_card_id - 1
         if item['id'] != card_id:
-            print('still searching for card id')
+            if cardIDFound == False:
+                print('still searching for card id')
             continue
         else:
+            cardIDFound = True
             print('card id found')
             occurrence_of_card_id = occurrence_of_card_id + 1
             if item['card_data']['fingerprint'] == fingerprint:
