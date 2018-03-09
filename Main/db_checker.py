@@ -8,10 +8,13 @@ import json
 import requests
 import time
 import RPi.GPIO as GPIO
+import pyrebase
+
 
 CARD1 = '18004865AB9E'
 CARD2 = '19007E5E4970'
 FIREBASE_URL = 'https://twic-db.firebaseio.com'
+
 
 def setup_leds():
     GPIO.setmode(GPIO.BCM)
@@ -73,8 +76,14 @@ def get_data():
     that we upload to the database, we do not need need to know what these keys are
     so we can just work with the values
     '''
+    auth = firebase.auth()
+    user = auth.
     # Get data from firebase
     result = requests.get(FIREBASE_URL + '/test_data.json')
     # Convert data to json
     data = json.loads(result.text)
+    print(data)
     return data.values()
+
+get_data()
+print({'craig': '5'})
