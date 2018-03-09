@@ -15,7 +15,16 @@ CARD1 = '18004865AB9E'
 CARD2 = '19007E5E4970'
 FIREBASE_URL = 'https://twic-db.firebaseio.com'
 
-
+config = {
+  "apiKey": "AIzaSyAyOqg5oprERTAN8Z_aVe88mdfx9sb9l_A",
+  "authDomain": "twic-db.firebaseapp.com",
+  "databaseURL": "https://databaseName.firebaseio.com",
+  "storageBucket": "twic-db.appspot.com"
+}
+firebase = pyrebase.initialize_app(config)
+auth = firebase.auth()
+user = auth.sign_in_with_email_and_password("cmoisesele@live.com", "dbtest")
+db = firebase.database()
 def setup_leds():
     GPIO.setmode(GPIO.BCM)
     GPIO.setwarnings(False)
