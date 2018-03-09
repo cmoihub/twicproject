@@ -20,6 +20,22 @@ def setup_leds():
     GPIO.setup(24, GPIO.OUT)
 
 setup_leds()
+
+def red_led():
+    print"The red LED will turn on"
+    GPIO.output(23,GPIO.HIGH)
+    print"Delaying for 5 seconds"
+    time.sleep(5)
+    print "Now we turn it off"
+    GPIO.output(23,GPIO.LOW)
+    
+def green_led():
+    print"The green LED will turn on"
+    GPIO.output(24,GPIO.HIGH)
+    print"Delaying for 5 seconds"
+    time.sleep(5)
+    print "Now we turn it off"
+    GPIO.output(24,GPIO.LOW)
 def check_db(data, card_id, fingerprint):
     ''' This function checks the database for a valid card if and then looks up the corresponding fingerprint
      https://stackoverflow.com/questions/11700798/python-accessing-values-nested-within-dictionaries
@@ -34,6 +50,7 @@ def check_db(data, card_id, fingerprint):
         if item['id'] != card_id:
             if cardIDFound == False:
                 print('still searching for card id')
+                break
             continue
         else:
             cardIDFound = True
@@ -41,28 +58,12 @@ def check_db(data, card_id, fingerprint):
             occurrence_of_card_id = occurrence_of_card_id + 1
             if item['card_data']['fingerprint'] == fingerprint:
                 print 'Success'
-                print"The green LED will turn on"
-                GPIO.output(24,GPIO.HIGH)
-                print"Delaying for 5 seconds"
-                time.sleep(5)
-                print "Now we turn it off"
-                GPIO.output(24,GPIO.LOW)
             else:
                 print 'Invalid fingerprint'
-                print"The red LED will turn on"
-                GPIO.output(23,GPIO.HIGH)
-                print"Delaying for 5 seconds"
-                time.sleep(5)
-                print "Now we turn it off"
-                GPIO.output(23,GPIO.LOW)
+                red_led()
     if occurrence_of_card_id == 0:
         print 'Card ID not found'
-        print"The red LED will turn on"
-        GPIO.output(23,GPIO.HIGH)
-        print"Delaying for 5 seconds"
-        time.sleep(5)
-        print "Now we turn it off"
-        GPIO.output(23,GPIO.LOW)
+        red_led()
         
 
 def get_data():
