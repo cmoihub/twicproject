@@ -6,16 +6,21 @@ https://temboo.com/python/parsing-json
 
 import json
 import requests
+import time
+import RPi.GPIO as GPIO
+GPIO.setmode(GPIO.BCM)
+GPIO.setwarnings(False)
+GPIO.setup(23, GPIO.OUT)
+GPIO.setup(24, GPIO.OUT)
 
+CARD1 = '18004865AB9E'
+CARD2 = '19007E5E4970'
 FIREBASE_URL = 'https://twic-db.firebaseio.com'
-DEFAULT_SECURITY_LEVEL = 2
 
 def check_db(data, card_id, fingerprint):
-    '''
-        This function checks the database for a valid card if
-        and then looks up the corresponding fingerprint
-        https://stackoverflow.com/questions/11700798/python-accessing-values-nested-within-dictionaries
-    '''
+    ''' This function checks the database for a valid card if and then looks up the corresponding fingerprint
+     https://stackoverflow.com/questions/11700798/python-accessing-values-nested-within-dictionaries
+     '''
     #data = get_data()
     # occurrence_of_card_id tracks if card id exists in the database
     # validateInput(data, card_id, fingerprint)
@@ -28,37 +33,31 @@ def check_db(data, card_id, fingerprint):
         else:
             print('card id found')
             occurrence_of_card_id = occurrence_of_card_id + 1
-            if fingerprint_is_valid(fingerprint, item['card_data']['fingerprint']):
-                '''if authority_is_valid(item['card_data']['authority'], DEFAULT_SECURITY_LEVEL):'''
+            if item['card_data']['fingerprint'] == fingerprint:
                 print 'Success'
-                turnONLED()
-                '''else:
-                    print 'Access level is too low'
-                    turnOFFLED()'''
+                print"The green LED will turn on"
+                GPIO.output(24,GPIO.HIGH)
+                print"Delaying for 5 seconds"
+                time.sleep(5)
+                print "Now we turn it off"
+                GPIO.output(24,GPIO.LOW)
             else:
                 print 'Invalid fingerprint'
-                turnOFFLED()
+                print"The red LED will turn on"
+                GPIO.output(23,GPIO.HIGH)
+                print"Delaying for 5 seconds"
+                time.sleep(5)
+                print "Now we turn it off"
+                GPIO.output(23,GPIO.LOW)
     if occurrence_of_card_id == 0:
         print 'Card ID not found'
-        turnOFFLED()
-
-def card_id_is_valid(expected_card_id, actual_card_id):
-    '''check if the fingerprint information is valid'''
-    return expected_card_id == actual_card_id
-
-def fingerprint_is_valid(expected_fingerprint, actual_fingerprint):
-    '''check if the fingerprint information is valid'''
-    return expected_fingerprint == actual_fingerprint
-
-def authority_is_valid(expected_authority_level, actual_authority_level):
-    '''check if the authority level is valid'''
-    return actual_authority_level >= expected_authority_level
-
-def turnONLED():
-    print "LED ON"
-
-def turnOFFLED():
-    print "LED OFF"
+        print"The red LED will turn on"
+        GPIO.output(23,GPIO.HIGH)
+        print"Delaying for 5 seconds"
+        time.sleep(5)
+        print "Now we turn it off"
+        GPIO.output(23,GPIO.LOW)
+        
 
 def get_data():
     '''
