@@ -7,8 +7,6 @@ https://temboo.com/python/parsing-json
 import json
 import requests
 
-CARD1 = '18004865AB9E'
-CARD2 = '19007E5E4970'
 FIREBASE_URL = 'https://twic-db.firebaseio.com'
 DEFAULT_SECURITY_LEVEL = 2
 
@@ -31,12 +29,12 @@ def check_db(data, card_id, fingerprint):
             print('card id found')
             occurrence_of_card_id = occurrence_of_card_id + 1
             if fingerprint_is_valid(fingerprint, item['card_data']['fingerprint']):
-                if authority_is_valid(item['card_data']['authority'], DEFAULT_SECURITY_LEVEL):
-                    print 'Success'
-                    turnONLED()
-                else:
+                '''if authority_is_valid(item['card_data']['authority'], DEFAULT_SECURITY_LEVEL):'''
+                print 'Success'
+                turnONLED()
+                '''else:
                     print 'Access level is too low'
-                    turnOFFLED()
+                    turnOFFLED()'''
             else:
                 print 'Invalid fingerprint'
                 turnOFFLED()
