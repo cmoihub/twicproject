@@ -7,11 +7,7 @@ import db_checker as db_
 
 #liam is 1 and 2
 #craig is 4
-data = {
-    'first':{'card_id':'19007E5E4970', 'card_data':{'fingerprint':'1'}},
-    'second':{'card_id':'18004865AB9E', 'card_data':{'fingerprint':'2'}},
-    'third':{'card_id':'19003F6B713C', 'card_data':{'fingerprint':'4'}}
-              }
+
 def run(data):
     '''runs the card and biometric readers'''
     card_id = rfidcard.read_card()

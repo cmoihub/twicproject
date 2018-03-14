@@ -4,10 +4,14 @@ https://pypi.python.org/pypi/python-firebase/1.2
 https://temboo.com/python/parsing-json
 '''
 
+import sys
+sys.path.insert(0,"/home/pi/Downloads/twic")
+
 import json
 import requests
 import time
-import RPi.GPIO as GPIO
+import displays
+displays.setup()
 '''import pyrebase'''
 
 
@@ -15,11 +19,18 @@ CARD1 = '18004865AB9E'
 CARD2 = '19007E5E4970'
 FIREBASE_URL = 'https://twic-db.firebaseio.com'
 
+offline_data = {
+    'first':{'card_id':'19007E5E4970', 'card_data':{'fingerprint':'1'}},
+    'second':{'card_id':'18004865AB9E', 'card_data':{'fingerprint':'2'}},
+    'third':{'card_id':'19003F6B713C', 'card_data':{'fingerprint':'4'}}
+              }
+
 def setup_leds():
     GPIO.setmode(GPIO.BCM)
     GPIO.setwarnings(False)
     GPIO.setup(23, GPIO.OUT)
     GPIO.setup(24, GPIO.OUT)
+    GPIO.setup(18, GPIO.OUT)
 
 setup_leds()
 
@@ -38,6 +49,16 @@ def green_led():
     time.sleep(5)
     print ("Now we turn it off")
     GPIO.output(24,GPIO.LOW)
+    
+def unlock_door():
+    print ("Unlock the door")
+    GPIO.output(18,GPIO.HIGH)
+    print ("Delaying for 5 seconds")
+    time.sleep(5)
+    print ("lock it back")
+    GPIO.output(18,GPIO.LOW)
+    print("Lock the door")
+    
 def check_db(card_id, fingerprint):
     ''' This function checks the database for a valid card if and then looks up the corresponding fingerprint
      https://stackoverflow.com/questions/11700798/python-accessing-values-nested-within-dictionaries
@@ -60,6 +81,7 @@ def check_db(card_id, fingerprint):
             occurrence_of_card_id = occurrence_of_card_id + 1
             if item['card_data']['fingerprint'] == fingerprint:
                 print ('Success')
+                green_led()
             else:
                 print ('Invalid fingerprint')
                 red_led()

@@ -37,11 +37,11 @@ def update_info():
     '''update card and fingerprint information on database'''
     print 'updating user info...'
 
-def add_info(card, fingerprint):
+def add_info(card, fingerprint, auth, role):
     '''add new card and fingerprint to database'''
     print 'adding user to system...'
     data = {
-        'id': card,
+        'card_id': card,
         'card_data': {
             'fingerprint': fingerprint
         }
@@ -55,9 +55,9 @@ def send_card_info_to_database(card_id):
     '''
     This function sends the inputted card info to the database
     '''
-    data={'id':card_id, 'number of times tapped': 0}
+    data={'id':card_id}
     sent = json.dumps(data)
-    result = requests.post(firebase_url+'/cards.json', sent)
+    result = requests.post(FIREBASE_URL+'/access_log.json', sent)
     print 'Success!' + str(result.status_code) + ',' + result.text
 
 
@@ -73,3 +73,5 @@ def get_data():
     # Convert data to json
     data = json.loads(result.text)
     return data.values()
+
+send_card_info_to_database('liam')
