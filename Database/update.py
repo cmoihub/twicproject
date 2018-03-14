@@ -51,11 +51,11 @@ def add_info(card, fingerprint, auth, role):
     print result.status_code
     print result.text
     
-def send_card_info_to_database(card_id):
+def log_access(info, status):
     '''
-    This function sends the inputted card info to the database
+    This function sends id info to the database
     '''
-    data={'id':card_id}
+    data={'id':info, 'status':status}
     sent = json.dumps(data)
     result = requests.post(FIREBASE_URL+'/access_log.json', sent)
     print 'Success!' + str(result.status_code) + ',' + result.text
@@ -74,4 +74,4 @@ def get_data():
     data = json.loads(result.text)
     return data.values()
 
-send_card_info_to_database('liam')
+##send_card_info_to_database('liam')

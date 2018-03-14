@@ -1,60 +1,49 @@
 import time
 import RPi.GPIO as GPIO
-##GPIO.setmode(GPIO.BCM)
-##GPIO.setwarnings(False)
-##GPIO.setup(23, GPIO.OUT)
-##GPIO.setup(24, GPIO.OUT)
-##GPIO.setup(18, GPIO.OUT)
-
-##def green_light:
-##print ("This is a test code for the LED ")
-##print ("The green LED will turn on")
-##GPIO.output(24,GPIO.HIGH)
-##print ("Delaying for 5 seconds")
-##time.sleep(5)
-##print ("Now we turn it off")
-##GPIO.output(24,GPIO.LOW)
-##print ("The red LED will turn on")
-##GPIO.output(23,GPIO.HIGH)
-##print ("Delaying for 5 seconds")
-##time.sleep(5)
-##print ("Now we turn it off")
-##GPIO.output(23,GPIO.LOW)
-##
 
 def setup():
     GPIO.setmode(GPIO.BCM)
     GPIO.setwarnings(False)
     GPIO.setup(23, GPIO.OUT)
     GPIO.setup(24, GPIO.OUT)
-    GPIO.setup(18, GPIO.OUT)
+    GPIO.setup(25, GPIO.OUT)
 
-def red_led():
+def red_led(delay):
     print ("The red LED will turn on")
     GPIO.output(23,GPIO.HIGH)
     print ("Delaying for 5 seconds")
-    time.sleep(5)
+    time.sleep(delay)
     print ("Now we turn it off")
     GPIO.output(23,GPIO.LOW)
     
-def green_led():
+def green_led(delay):
     print ("The green LED will turn on")
     GPIO.output(24,GPIO.HIGH)
-##    print ("Delaying for 5 seconds")
-    unlock_door()
-##    time.sleep(5)
+    print ("Delaying for 5 seconds")
+##    unlock_door()
+    time.sleep(delay)
     print ("Now we turn it off")
     GPIO.output(24,GPIO.LOW)
     
-def unlock_door():
+def unlock_door(delay):
     print ("Unlock the door")
     GPIO.output(18,GPIO.HIGH)
     print ("Delaying for 5 seconds")
-    time.sleep(5)
+    time.sleep(delay)
     print ("lock it back")
     GPIO.output(18,GPIO.LOW)
     
+    
 setup()
-green_led()
-unlock_door()
-red_led()
+
+GPIO.output(23,GPIO.HIGH)
+GPIO.output(24,GPIO.HIGH)
+GPIO.output(25,GPIO.HIGH)
+time.sleep(5)
+GPIO.output(23,GPIO.LOW)
+GPIO.output(24,GPIO.LOW)
+GPIO.output(25,GPIO.LOW)
+##print ("running")
+##GPIO.output(24,GPIO.HIGH)
+##time.sleep(5)
+##GPIO.output(24,GPIO.LOW)

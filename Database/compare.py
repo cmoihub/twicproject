@@ -10,8 +10,8 @@ sys.path.insert(0,"/home/pi/Downloads/twic")
 import json
 import requests
 import time
-import update.send_card_info_to_database as log_access
 import displays
+import update
 displays.setup()
 '''import pyrebase'''
 
@@ -23,6 +23,8 @@ DELAY_TIME = 5
 NO_DELAY_TIME = 2
 DEFAULT_SECURITY_LEVEL = 2
 DEFAULT_ROLE = 'Chef'
+GOOD_STATUS = 'success'
+BAD_STATUS = 'failure'
 
 offline_data = {
     'first':{'card_id':'19007E5E4970', 'card_data':{'fingerprint':'1', 'level':'2', 'role':'Chef'}},
@@ -51,19 +53,21 @@ def check_db(card_id, fingerprint):
             print('card id found')
             occurrence_of_card_id = occurrence_of_card_id + 1
             if item['card_data']['fingerprint'] == fingerprint && item['card_data']['level'] >= DEFAULT_SECURITY_LEVEL && item['card_data']['role'] == DEFAULT_ROLE :
-                print ('Success')
+                print (GOOD_STATUS)
                 displays.green_led(NO_DELAY_TIME)
                 displays.unlock_door(DELAY_TIME)
-                log_access(card_id, 'success')
+                update.log_access(card_id, GOOD_STATUS)
             else:
                 print ('Invalid fingerprint')
+                print (BAD_STATUS)
                 displays.red_led(DELAY_TIME)
-                log_access(card_id, 'failure')
+                update.log_access(card_id, BAD_STATUS)
     if occurrence_of_card_id == 0:
         print ('Card ID not found')
+        print (BAD_STATUS)
         displays.red_led(DELAY_TIME)
-        log_access(card_id, 'failure')
-        
+        update.log_access(card_id, BAD_STATUS)
+
 def secure_get_data():
     '''config = {
       "apiKey": "AIzaSyAyOqg5oprERTAN8Z_aVe88mdfx9sb9l_A",
