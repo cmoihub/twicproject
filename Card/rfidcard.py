@@ -5,8 +5,8 @@ import serial
 import requests
 import json
 import sys
-sys.path.insert(0,"/home/pi/Downloads/twic")
-serial = serial.Serial("/dev/ttyUSB3", baudrate=9600)
+sys.path.insert(0,"/home/pi/Downloads/twicproject")
+serial = serial.Serial("/dev/ttyUSB1", baudrate=9600)
 
 current_card = ''
 

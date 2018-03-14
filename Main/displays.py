@@ -6,7 +6,7 @@ def setup():
     GPIO.setwarnings(False)
     GPIO.setup(23, GPIO.OUT)
     GPIO.setup(24, GPIO.OUT)
-    GPIO.setup(25, GPIO.OUT)
+    GPIO.setup(18, GPIO.OUT)
 
 def red_led(delay):
     print ("The red LED will turn on")
@@ -35,15 +35,3 @@ def unlock_door(delay):
     
     
 setup()
-
-GPIO.output(23,GPIO.HIGH)
-GPIO.output(24,GPIO.HIGH)
-GPIO.output(25,GPIO.HIGH)
-time.sleep(5)
-GPIO.output(23,GPIO.LOW)
-GPIO.output(24,GPIO.LOW)
-GPIO.output(25,GPIO.LOW)
-##print ("running")
-##GPIO.output(24,GPIO.HIGH)
-##time.sleep(5)
-##GPIO.output(24,GPIO.LOW)
