@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-
+#top left
 import fingerpi as fp
 # from fingerpi import base
 
@@ -8,13 +8,14 @@ import time
 # import matplotlib.pyplot as plt
 import pickle
 
+print('fingerprint reader running')
 
-def printByteArray(arr):
-    return map(hex, list(arr))
+#def printByteArray(arr):
+ #   return map(hex, list(arr))
 
 f = fp.FingerPi()
 id = -1
-def run():
+def read_fp():
     print 'Opening connection...'
     f.Open(extra_info = True, check_baudrate = True)
 
@@ -35,7 +36,7 @@ def run():
         else:
             print'No finger detected'
             f.CmosLed(False)
-            return id
+            return -1
         break
         
     

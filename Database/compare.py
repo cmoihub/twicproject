@@ -5,7 +5,7 @@ https://temboo.com/python/parsing-json
 '''
 
 import sys
-sys.path.insert(0,"/home/pi/Downloads/twic")
+sys.path.insert(0,"/home/pi/Downloads/twicproject")
 
 import json
 import requests
@@ -26,10 +26,12 @@ DEFAULT_ROLE = 'Chef'
 GOOD_STATUS = 'success'
 BAD_STATUS = 'failure'
 
+##150028790044
+##19003F6B713C
 offline_data = {
     'first':{'card_id':'19007E5E4970', 'card_data':{'fingerprint':'1', 'level':'2', 'role':'Chef'}},
     'second':{'card_id':'18004865AB9E', 'card_data':{'fingerprint':'2', 'level':'3', 'role':'Captain'}},
-    'third':{'card_id':'19003F6B713C', 'card_data':{'fingerprint':'4', 'level':'1', 'role':'Chef'}}
+    'third':{'card_id':'150028790044', 'card_data':{'fingerprint':'4', 'level':'1', 'role':'Chef'}}
               }
     
 def check_db(card_id, fingerprint):
@@ -44,15 +46,15 @@ def check_db(card_id, fingerprint):
     for item in data:
         occurrence_of_card_id = occurrence_of_card_id - 1
         if item['card_id'] != card_id:
-            if cardIDFound == False:
-                print('still searching for card id')
-                break
+##            if cardIDFound == False:
+            print('still searching for card id')
+##                break
             continue
         else:
             cardIDFound = True
             print('card id found')
             occurrence_of_card_id = occurrence_of_card_id + 1
-            if item['card_data']['fingerprint'] == fingerprint && item['card_data']['level'] >= DEFAULT_SECURITY_LEVEL && item['card_data']['role'] == DEFAULT_ROLE :
+            if item['card_data']['fingerprint'] == fingerprint and item['card_data']['level'] >= DEFAULT_SECURITY_LEVEL and item['card_data']['role'] == DEFAULT_ROLE :
                 print (GOOD_STATUS)
                 displays.green_led(NO_DELAY_TIME)
                 displays.unlock_door(DELAY_TIME)

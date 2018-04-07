@@ -8,7 +8,7 @@ from .base import *
 
 class FingerPi():
     def __init__(self,
-                 port = '/dev/ttyUSB2',
+                 port = '/dev/ttyUSB0',
                  baudrate = 9600,
                  device_id = 0x01,
                  timeout = 2,
